@@ -13,6 +13,7 @@ const httpOptions = {
 
 export class AuthService {
   private url: string;
+  private logoutUrl: string = 'http://localhost:3000/auth/logout';
 
   constructor(private http: HttpClient) {
     let l = window.location;
@@ -33,8 +34,8 @@ export class AuthService {
     return this.http.post<User>(this.url + 'login', user, httpOptions);
   }
 
-  logOut() {
-    //return this.http.delete(this.url + 'logout')
+  logOut(): any {
+    return this.http.get<any>(this.logoutUrl);
   }
 
 }

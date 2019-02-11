@@ -44,8 +44,7 @@ export class RegisterPage implements OnInit {
         }
       );
     } else {
-      console.log('Your and idiot');
-      console.log(this.user);
+      this.errorMessage = "Your passwords do not match"
     }
     
   }

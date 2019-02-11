@@ -37,6 +37,9 @@
         <ion-label position="floating">Confirm password</ion-label>
         <ion-input type="password" name="confirm_password" [(ngModel)]="confirm_password"></ion-input>
       </ion-item>
+      <ion-item *ngIf="errorMessage">
+        <div class="errors">Oops! {{errorMessage}}. Please try again.</div>
+      </ion-item>
       <ion-button id="register" expand="full" (click)="onSubmit()">Register</ion-button>
     </ion-card-content>
   </ion-card>

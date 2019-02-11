@@ -24,13 +24,19 @@ export class LoginPage implements OnInit {
 
   response(response): void {
     if(response.success===false) {
-      this.errors = response.error.errors;
-      this.errorMessage = response.error.message;
+      this.errorMessage = response.error;
     }
 
     if(response.success===true) {
-      this.router.navigate(['/']);
-    }
+      let l = window.location;
+      let host:string;
+      if(l.port == '8100'){
+        host = 'localhost:8100';
+      }else{
+        host = l.hostname + ((l.port.length>0)?':' + l.port:'');
+      }
+        this.router.navigate([host]);
+      }
   }
 
   onSubmit(): void {
