@@ -8,11 +8,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'localhost:8100',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
     path: 'home',
     loadChildren: './home/home.module#HomePageModule'
   },

@@ -19,12 +19,11 @@ export class LogoutPage implements OnInit {
 
   response(response): void {
     if(response.success===false) {
-      this.errors = response.error.errors;
       this.errorMessage = response.error;
     }
 
     if(response.success===true) {
-      this.router.navigate(['/']);
+      window.location.href = this.authService.getRedirect();
     }
   }
 

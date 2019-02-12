@@ -28,14 +28,7 @@ export class LoginPage implements OnInit {
     }
 
     if(response.success===true) {
-      let l = window.location;
-      let host:string;
-      if(l.port == '8100'){
-        host = 'localhost:8100';
-      }else{
-        host = l.hostname + ((l.port.length>0)?':' + l.port:'');
-      }
-        this.router.navigate([host]);
+      window.location.href = this.authService.getRedirect();
       }
   }
 
