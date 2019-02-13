@@ -16,10 +16,12 @@
       <ion-item>
         <ion-label position="floating">Username</ion-label>
         <ion-input type="text" name="username" [(ngModel)]="user.username"></ion-input>
+        <div *ngIf="errors.username"> {{ errors.username }} </div>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Email</ion-label>
         <ion-input type="email" name="email" [(ngModel)]="user.email"></ion-input>
+        <div *ngIf="errors.email"> {{ errors.email }} </div>
       </ion-item>
       <ion-item>
         <ion-label position="floating">First Name</ion-label>
@@ -32,13 +34,12 @@
       <ion-item>
         <ion-label position="floating">Password</ion-label>
         <ion-input type="password" name="password" [(ngModel)]="user.password"></ion-input>
+        <div *ngIf="errors.password"> {{ errors.password }} </div>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Confirm password</ion-label>
         <ion-input type="password" name="confirm_password" [(ngModel)]="confirm_password"></ion-input>
-      </ion-item>
-      <ion-item *ngIf="errorMessage">
-        <div class="errors">Oops! {{errorMessage}}. Please try again.</div>
+        <div *ngIf="errors.confirm_password"> {{ errors.confirm_password }} </div>
       </ion-item>
       <ion-button id="register" expand="full" (click)="onSubmit()">Register</ion-button>
     </ion-card-content>

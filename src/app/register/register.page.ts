@@ -12,7 +12,7 @@ import { User } from '../users';
 })
 export class RegisterPage implements OnInit {
   user:User = new User();
-  errors: Array<any> = [];
+  errors: any = {};
   errorMessage: string;
   confirm_password: string;
 
@@ -26,8 +26,24 @@ export class RegisterPage implements OnInit {
 
   response(response): void {
     if(response.success===false) {
-      this.errors = response.error.errors;
-      this.errorMessage = response.error.message;
+      console.log(response.errors);
+      
+      if( response.errors.name == 'MissingUsernameError' ){
+        this.errors.username = 'Please enter a username';
+      }
+
+      if( response.errors.name == 'UserExistsError' ){
+        this.errors.username = 'A user with the given username is already registered';
+      }
+
+      if( response.errors.name == 'MissingPasswordError' ){
+        this.errors.password = 'Please enter a password';
+      }
+
+      if( response.errors.errors.email ){
+        this.errors.email = response.errors.errors.email.message;
+      }
+
     }
 
     if(response.success===true) {
@@ -36,15 +52,14 @@ export class RegisterPage implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.user.password != null && this.user.password === this.confirm_password) {
+    if (this.user.password === this.confirm_password) {
       this.authService.register(this.user).subscribe(
         (response) => {
           this.response(response)
-          console.log(response)
         }
       );
     } else {
-      this.errorMessage = "Your passwords do not match"
+      this.errors.confirm_password = "Your passwords do not match"
     }
     
   }
